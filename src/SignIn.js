@@ -14,12 +14,14 @@ import {
 } from "firebase/auth";
 import Modal from "./Modal";
 import "./SignIn.css";
+import ErrorHandler from "./ErrorHandler";
 
 const SignIn = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
+  const [errorInfo, setErrorInfo] = useState("");
+  const [resetFun, setResetFun] = useState(false);
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     props.auth.signInWithPopup(provider);
@@ -39,7 +41,8 @@ const SignIn = (props) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        setErrorInfo(errorCode);
+        console.log(errorCode);
         // ...
       });
   };
@@ -52,6 +55,8 @@ const SignIn = (props) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setErrorInfo(errorCode);
+        console.log(errorCode);
       });
   };
 
@@ -65,6 +70,9 @@ const SignIn = (props) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         alert(errorMessage);
+        setErrorInfo(errorCode);
+        setResetFun(true);
+        console.log(resetFun);
         console.log(errorCode);
       });
   };
@@ -85,6 +93,7 @@ const SignIn = (props) => {
             setPassword(event.target.value);
           }}
         ></input>
+        <ErrorHandler code={errorInfo} />
         <div className="d-grid gap-2">
           <button type="submit" onClick={signInWithEmail}>
             Sign in with e-mail
@@ -112,6 +121,7 @@ const SignIn = (props) => {
               setIsOpen(false);
             }}
             email={setEmail}
+            code={errorInfo}
             reset={resetPassword}
           ></Modal>
         </div>

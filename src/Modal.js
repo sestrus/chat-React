@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ErrorHandler from "./ErrorHandler";
 
 const Modal = (props) => {
   if (!props.open) {
@@ -48,6 +49,7 @@ const Modal = (props) => {
               placeholder="E-mail"
               onChange={(e) => props.email(e.target.value)}
             />
+            <ErrorHandler code={props.code} />
             <button type="submit" onClick={props.reset}>
               Submit!
             </button>

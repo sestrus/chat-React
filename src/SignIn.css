@@ -55,17 +55,26 @@ body {
   color: rgb(172, 159, 159);
   align-items: center;
 }
-.login-container input[type="text"],
-.login-container input[type="email"],
+
 .login-container input[type="password"] {
   width: 100%;
   padding: 12px 20px;
-  margin-bottom: 20px;
   box-sizing: border-box;
   border: 1px solid #666;
   border-radius: 4px;
   background-color: #222;
   color: #fff;
+}
+.login-container input[type="text"],
+.login-container input[type="email"] {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background-color: #222;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 .login-container input[type="submit"] {
@@ -217,7 +226,7 @@ main::-webkit-scrollbar-thumb {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  background-color: rgb(40, 37, 53);
+  background: linear-gradient(#e66465, #9198e5);
 }
 
 .chatroom-message {
@@ -262,4 +271,11 @@ p {
   position: relative;
   color: white;
   text-align: center;
+}
+
+.error-message {
+  color: rgb(235, 66, 66);
+  text-decoration: underline;
+  font-size: 1.5vh;
+  text-align: left;
 }
