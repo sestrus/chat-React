@@ -5,14 +5,29 @@ import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import "./SignIn.css";
+import { getActiveElement } from "@testing-library/user-event/dist/utils";
 
 const ChatMessage = (props) => {
-  const { text, uid } = props.message;
-
+  const { text, uid, photoURL } = props.message;
+  console.log(props.message);
   const messageClass = uid === props.auth.currentUser.uid ? "sent" : "received";
 
-  console.log(text);
-  return <p>{text}</p>;
+  return (
+    <div className={`chatroom-message ${messageClass}`}>
+      <div className="chatroom-photo">
+        <img
+          alt="profile-photo"
+          style={{ maxWidth: "30px" }}
+          src={
+            photoURL ||
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+          }
+        />
+      </div>
+      <p className="chatroom-message-content">{text}</p>
+    </div>
+  );
 };
 
 export default ChatMessage;

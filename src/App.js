@@ -14,7 +14,7 @@ import {
 } from "firebase/auth";
 import ChatRoom from "./ChatRoom";
 import SignIn from "./SignIn";
-import "./Modal.css";
+import "./SignIn.css";
 
 firebase.initializeApp({
   apiKey: "AIzaSyDyydIuIX2t27HFhz2l8xVi7hHXDm-TvPQ",
