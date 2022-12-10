@@ -1,17 +1,8 @@
 import firebase from "firebase/compat/app";
-import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
+import React from "react";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import {
-  getAuth,
-  sendSignInLinkToEmail,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-} from "firebase/auth";
 import ChatRoom from "./ChatRoom";
 import SignIn from "./SignIn";
 import "./SignIn.css";
