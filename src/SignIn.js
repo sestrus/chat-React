@@ -1,13 +1,9 @@
 import firebase from "firebase/compat/app";
 import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import {
   getAuth,
-  sendSignInLinkToEmail,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -22,6 +18,7 @@ const SignIn = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [errorInfo, setErrorInfo] = useState("");
   const [resetFun, setResetFun] = useState(false);
+
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     props.auth.signInWithPopup(provider);
@@ -30,20 +27,11 @@ const SignIn = (props) => {
   const signUpWithEmail = () => {
     createUserWithEmailAndPassword(props.auth, email, password)
       .then((userCredential) => {
-        // The link was successfully sent. Inform the user.
-        // Save the email locally so you don't need to ask the user for it again
-        // if they open the link on the same device.
-        const user = userCredential.user;
-        console.log(user);
         alert("Successfully created an account");
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
         setErrorInfo(errorCode);
-        console.log(errorCode);
-        // ...
       });
   };
 
@@ -54,9 +42,7 @@ const SignIn = (props) => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
         setErrorInfo(errorCode);
-        console.log(errorCode);
       });
   };
 
@@ -64,16 +50,12 @@ const SignIn = (props) => {
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        alert("Password reset e-mail sent!");
+        alert("Check your e-mail for message from us!");
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
         setErrorInfo(errorCode);
         setResetFun(true);
-        console.log(resetFun);
-        console.log(errorCode);
       });
   };
 
@@ -109,6 +91,7 @@ const SignIn = (props) => {
               className="forgot-password-paragraph"
               onClick={() => {
                 setIsOpen(true);
+                setErrorInfo("");
               }}
             >
               Forgot password?
@@ -119,6 +102,7 @@ const SignIn = (props) => {
             open={isOpen}
             onClose={() => {
               setIsOpen(false);
+              setErrorInfo("");
             }}
             email={setEmail}
             code={errorInfo}

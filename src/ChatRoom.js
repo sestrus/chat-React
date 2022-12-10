@@ -1,9 +1,7 @@
 import firebase from "firebase/compat/app";
-import React, { useState, useRef, useEffect } from "react";
-import ReactDOM from "react-dom/client";
+import React, { useState, useRef } from "react";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ChatMessage from "./ChatMessage";
 import "./SignIn.css";
@@ -24,8 +22,6 @@ const ChatRoom = (props) => {
       )
     );
   };
-
-  console.log(props.auth);
 
   const sendMessage = async (e) => {
     e.preventDefault();

@@ -7,27 +7,6 @@ const Modal = (props) => {
   }
 
   return (
-    // <div>
-    //   <div className="modal">
-    //     <div classnmae="modal-content">
-    //       <div className="modal-header">
-    //         Enter Your E-mail
-    //         <button
-    //           type="button"
-    //           className="btn-close"
-    //           data-bs-dismiss="modal"
-    //           aria-label="Close"
-    //         ></button>
-    //       </div>
-    //       <div className="modal-body">
-    //         <input type="email" onChange={(e) => props.email(e.target.value)} />
-    //         <button type="submit" onClick={props.reset}>
-    //           Submit!
-    //         </button>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
     <div>
       <div className="modal-window">
         <div className="modal-content">
