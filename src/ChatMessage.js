@@ -6,11 +6,11 @@ import "firebase/compat/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import "./SignIn.css";
+import { getActiveElement } from "@testing-library/user-event/dist/utils";
 
 const ChatMessage = (props) => {
   const { text, uid, photoURL } = props.message;
-
-  console.log(props.message.createdAt);
+  console.log(props.message);
   const messageClass = uid === props.auth.currentUser.uid ? "sent" : "received";
 
   return (

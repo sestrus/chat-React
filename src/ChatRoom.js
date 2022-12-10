@@ -1,5 +1,5 @@
 import firebase from "firebase/compat/app";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
@@ -13,6 +13,7 @@ const ChatRoom = (props) => {
   const query = messagesRef.orderBy("createdAt").limit(25);
   const [messages] = useCollectionData(query, { idField: "id" });
   const [formValue, setFormValue] = useState("");
+  const dummy = useRef();
 
   const SignOut = () => {
     return (
@@ -24,30 +25,36 @@ const ChatRoom = (props) => {
     );
   };
 
+  console.log(props.auth);
+
   const sendMessage = async (e) => {
     e.preventDefault();
     const { uid, photoURL } = props.auth.currentUser;
-
-    await messagesRef.add({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      photoURL,
-    });
+    if (formValue) {
+      await messagesRef.add({
+        text: formValue,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        photoURL,
+      });
+    }
+    setFormValue("");
+    dummy.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="chatroom-container">
       <div className="chatroom-header">
-        Burdzy-Chat 1.0
+        <p className="chatroom-title">Burdzy-Chat 1.0</p>
         <SignOut />
       </div>
 
       <main>
         {messages &&
           messages.map((msg) => (
-            <ChatMessage key={msg.id} message={msg} auth={props.auth} />
+            <ChatMessage key={Math.random()} message={msg} auth={props.auth} />
           ))}
+        <div ref={dummy}></div>
       </main>
 
       <form>

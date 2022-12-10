@@ -71,10 +71,7 @@ const SignIn = (props) => {
 
   return (
     <div>
-      <div
-        className="login-container"
-        style={{ display: "flex", flexDirection: "column", maxWidth: "200 px" }}
-      >
+      <div className="login-container">
         <label>Welcome to Burdzy-Chat!</label>
         <input
           placeholder="E-mail"
@@ -103,7 +100,6 @@ const SignIn = (props) => {
               className="forgot-password-paragraph"
               onClick={() => {
                 setIsOpen(true);
-                console.log(isOpen);
               }}
             >
               Forgot password?

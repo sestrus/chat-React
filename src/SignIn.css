@@ -1,3 +1,5 @@
+@import url("https://css.gg/mail-forward.css");
+
 html {
   font-family: sans-serif;
   background: linear-gradient(
@@ -11,7 +13,7 @@ html {
 }
 body {
   font-family: sans-serif;
-  background: none;
+  background-color: rgb(40, 37, 53);
   color: white;
 }
 
@@ -42,11 +44,16 @@ body {
   border: none;
   color: #fff;
 }
+.message-input:focus {
+  border: none;
+}
 .send-btn {
   background-color: #461347dc;
   border: none;
   padding: 20px;
   width: 15%;
+  color: rgb(172, 159, 159);
+  align-items: center;
 }
 .login-container input[type="text"],
 .login-container input[type="email"],
@@ -92,6 +99,7 @@ body {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
+  transition: width 2s;
   backdrop-filter: blur(5px);
 }
 
@@ -100,10 +108,10 @@ body {
   max-width: 500px;
   background-color: rgb(88, 85, 85);
   border-radius: 4px;
-
   margin: 15% auto;
   padding: 20px;
   width: 80%;
+  transition: width 2s;
 }
 
 /* Style the body behind the modal */
@@ -136,14 +144,31 @@ body {
   block-size: fit-content;
   cursor: pointer;
 }
+
 .chatroom-header {
-  background-color: #222;
-  padding: 10px;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(43, 43, 43);
+}
+
+.chatroom-title {
+  margin: 0;
+  font-size: large;
 }
 .signout-btn {
-  align-self: right;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #442d83;
+  color: rgb(117, 114, 114);
 }
+.signout-btn:hover {
+  border: 2px black;
+}
+
 .chatroom-container {
   width: 600px;
   margin: 50px auto;
@@ -224,7 +249,7 @@ main::-webkit-scrollbar-thumb {
 img {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 40%;
   margin: 5px;
 }
 

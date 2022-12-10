@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const Modal = (props) => {
   if (!props.open) {
-    console.log(props.open);
     return null;
   }
 
