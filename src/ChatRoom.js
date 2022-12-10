@@ -6,6 +6,7 @@ import "firebase/compat/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ChatMessage from "./ChatMessage";
+import "./SignIn.css";
 
 const ChatRoom = (props) => {
   const messagesRef = props.firestore.collection("messages");
@@ -16,7 +17,9 @@ const ChatRoom = (props) => {
   const SignOut = () => {
     return (
       props.auth.currentUser && (
-        <button onClick={() => props.auth.signOut()}>Sign Out</button>
+        <button className="signout-btn" onClick={() => props.auth.signOut()}>
+          Sign Out
+        </button>
       )
     );
   };
@@ -34,21 +37,28 @@ const ChatRoom = (props) => {
   };
 
   return (
-    <div>
-      <div>
-        Welcome
+    <div className="chatroom-container">
+      <div className="chatroom-header">
+        Burdzy-Chat 1.0
         <SignOut />
+      </div>
+
+      <main>
         {messages &&
           messages.map((msg) => (
             <ChatMessage key={msg.id} message={msg} auth={props.auth} />
           ))}
-      </div>
+      </main>
+
       <form>
         <input
+          type="text"
+          className="message-input"
           value={formValue}
+          placeholder="say something"
           onChange={(e) => setFormValue(e.target.value)}
         />
-        <button type="submit" onClick={sendMessage}>
+        <button className="send-btn" type="submit" onClick={sendMessage}>
           Send
         </button>
       </form>

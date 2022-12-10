@@ -13,12 +13,12 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import Modal from "./Modal";
-import "./Modal.css";
-import logo from "./chatlogo2.png";
+import "./SignIn.css";
 
 const SignIn = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -64,27 +64,73 @@ const SignIn = (props) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        alert(errorMessage);
+        console.log(errorCode);
       });
   };
 
   return (
-    <div className="sign-in">
-      <img alt="logo" src={logo} />
-      <input
-        type="text"
-        onChange={(event) => setEmail(event.target.value)}
-      ></input>
-      <input
-        type="password"
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-      ></input>
-      <button onClick={signInWithEmail}>Sign in with e-mail</button>
-      <button onClick={signUpWithEmail}>Sign Up with e-mail</button>
-      <button onClick={signInWithGoogle}> Sign in with Google</button>
+    <div>
+      <div
+        className="login-container"
+        style={{ display: "flex", flexDirection: "column", maxWidth: "200 px" }}
+      >
+        <label>Welcome to Burdzy-Chat!</label>
+        <input
+          placeholder="E-mail"
+          type="email"
+          onChange={(event) => setEmail(event.target.value)}
+        ></input>
+        <input
+          placeholder="Password"
+          type="password"
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        ></input>
+        <div className="d-grid gap-2">
+          <button type="submit" onClick={signInWithEmail}>
+            Sign in with e-mail
+          </button>
+          <button type="submit" onClick={signUpWithEmail}>
+            Sign Up with e-mail
+          </button>
+          <button type="submit" onClick={signInWithGoogle}>
+            Sign in with Google
+          </button>
+          <div className="forgot-password-div">
+            <p
+              className="forgot-password-paragraph"
+              onClick={() => {
+                setIsOpen(true);
+                console.log(isOpen);
+              }}
+            >
+              Forgot password?
+            </p>
+          </div>
 
-      <Modal reset={resetPassword} email={setEmail} />
+          <Modal
+            open={isOpen}
+            onClose={() => {
+              setIsOpen(false);
+            }}
+            email={setEmail}
+            reset={resetPassword}
+          ></Modal>
+        </div>
+        {/* {show ? (
+          <Modal reset={resetPassword} email={setEmail} />
+        ) : (
+          <p
+            onClick={() => {
+              setShow(!show);
+            }}
+          >
+            show modal
+          </p>
+        )} */}
+      </div>
     </div>
   );
 };
