@@ -56,15 +56,7 @@ body {
   align-items: center;
 }
 
-.login-container input[type="password"] {
-  width: 100%;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 1px solid #666;
-  border-radius: 4px;
-  background-color: #222;
-  color: #fff;
-}
+.login-container input[type="password"],
 .login-container input[type="text"],
 .login-container input[type="email"] {
   width: 100%;
@@ -92,7 +84,6 @@ body {
 .login-container button[type="submit"] {
   width: 100%;
   padding: 5px;
-  margin-top: 7px;
   box-sizing: border-box;
   border: 1px solid #666;
   border-radius: 4px;
